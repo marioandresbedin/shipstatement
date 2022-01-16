@@ -9,7 +9,6 @@
 	</parent>
 	<groupId>com.insurwire</groupId>
 	<artifactId>shipstatement</artifactId>
-	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>shipstatement</name>
 	<description>Ship Statement project</description>
