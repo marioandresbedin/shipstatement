@@ -1,0 +1,1320 @@
+<wsdl:definitions
+	xmlns:s="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:tns="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	targetNamespace="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada">
+	<wsdl:documentation
+		xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Recepción de la información anticipada marítima</wsdl:documentation>
+	<wsdl:types>
+		<s:schema elementFormDefault="qualified"
+			targetNamespace="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada">
+			<s:element name="RegistrarViaje">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argWSAutenticacionEmpresa"
+							type="tns:WSAutenticacionEmpresa" />
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argRegistrarViaje" type="tns:RegistrarViajeParams" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="WSAutenticacionEmpresa">
+				<s:complexContent mixed="false">
+					<s:extension base="tns:WSAutenticacion">
+						<s:sequence>
+							<s:element minOccurs="1" maxOccurs="1"
+								name="CuitEmpresaConectada" type="s:long" />
+							<s:element minOccurs="0" maxOccurs="1" name="TipoAgente" type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="Rol"
+								type="s:string" />
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:complexType name="WSAutenticacion">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="Token"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Sign"
+						type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="RegistrarViajeParams">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdTransaccion" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="InformacionAnticipadaMaritimaDoc"
+						type="tns:RegistrarViajeDoc" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="RegistrarViajeDoc">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdentificadorViajeAnterior" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdentificadorMedioTransporte" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPaisProcedencia" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPuertoOrigen" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPaisFinViaje" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorImportacionExportacion" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaInicioViaje" type="s:dateTime" />
+					<s:element minOccurs="1" maxOccurs="1" name="FechaArribo"
+						type="s:dateTime" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorTransporteVacio" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorMercaderiaAbordo" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="DesignacionTransportista" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPaisTransportista" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoNacionalidadMediodeTransporte" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoLugarOperativo" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoAduana" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="NombreCapitanBuque" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="TipoIdentificadorCapitan" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="NumeroIdentificadorCapitan" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="CodigoPaisEmisorIdentificadorCapitan" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" 
+						name="Comentario" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" 
+						name="AtaCbcViaje" type="tns:ArrayOfAtaCbc" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="ContenedoresVaciosCorreo" type="tns:ArrayOfContenedor" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ArrayOfAtaCbc">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded"
+						name="AtaCbc" nillable="true" type="tns:AtaCbc" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="AtaCbc">
+				<s:sequence>
+					<s:element minOccurs="1" maxOccurs="1" name="CuitAtaCbc"
+						type="s:long" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ArrayOfContenedor">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded"
+						name="Contenedor" nillable="true" type="tns:Contenedor" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="Contenedor">
+				<s:sequence>
+					<s:element minOccurs="1" maxOccurs="1"
+						name="CuitAtaOperadorContenedor" type="s:long" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CaracteristicasContenedor" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdentificadorContenedor" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CondicionContenedor" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1" name="Tara"
+						type="s:long" />
+					<s:element minOccurs="1" maxOccurs="1" name="PesoBruto"
+						type="s:decimal" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="NumeroPrecintoOrigen" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaVencimientoContenedor" type="s:dateTime" />
+					<s:element minOccurs="0" maxOccurs="1" name="Acep"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPuertoEmbarque" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaEmbarque" type="s:dateTime" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaCargaLugarOrigen" type="s:dateTime" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoLugarOrigen" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPaisLugarOrigen" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPuertoDescarga" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaDescarga" type="s:dateTime" />
+					<s:element minOccurs="0" maxOccurs="1" name="Comentario"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoAduana" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoLugarOperativoDescarga" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="RegistrarViajeResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="RegistrarViajeResult" type="tns:InfoAnticipadaMaritimaRta" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="InfoAnticipadaMaritimaRta">
+				<s:complexContent mixed="false">
+					<s:extension base="tns:ResultadoEjecucionSerializable">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1"
+								name="IdentificadorViaje" type="s:string" />
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:complexType name="ResultadoEjecucionSerializable">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="ListaErrores" type="tns:ArrayOfDgaMensajeSistemaReducido" />
+					<s:element minOccurs="0" maxOccurs="1" name="Server"
+						type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1" name="TimeStamp"
+						type="s:dateTime" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ArrayOfDgaMensajeSistemaReducido">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded"
+						name="DetalleError" nillable="true"
+						type="tns:DgaMensajeSistemaReducido" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="DgaMensajeSistemaReducido">
+				<s:sequence>
+					<s:element minOccurs="1" maxOccurs="1" name="Codigo"
+						nillable="true" type="s:int" />
+					<s:element minOccurs="0" maxOccurs="1" name="Descripcion"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="DescripcionAdicional" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="RectificarViaje">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argWSAutenticacionEmpresa"
+							type="tns:WSAutenticacionEmpresa" />
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argRectificarViaje" type="tns:RectificarViajeParams" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="RectificarViajeParams">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdTransaccion" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="InformacionAnticipadaMaritimaDoc"
+						type="tns:RectificarViajeDoc" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="RectificarViajeDoc">
+				<s:complexContent mixed="false">
+					<s:extension base="tns:RegistrarViajeDoc">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1"
+								name="IdentificadorViaje" type="s:string" />
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:element name="RectificarViajeResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="RectificarViajeResult" type="tns:InfoAnticipadaMaritimaRta" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="RegistrarTitulosCbc">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argWSAutenticacionEmpresa"
+							type="tns:WSAutenticacionEmpresa" />
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argRegistrarTitulosCBC"
+							type="tns:RegistrarTitulosCbcParams" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="RegistrarTitulosCbcParams">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdTransaccion" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="InformacionTitulosDoc" type="tns:InformacionTitulosDoc" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="InformacionTitulosDoc">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdentificadorViaje" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Titulos"
+						type="tns:ArrayOfTitulo" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="ContenedoresVaciosCorreo" type="tns:ArrayOfContenedor" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ArrayOfTitulo">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded"
+						name="Titulo" nillable="true" type="tns:Titulo" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="Titulo">
+				<s:sequence>
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaEmbarque" type="s:dateTime" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPuertoEmbarque" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaCargaLugarOrigen" type="s:dateTime" />
+					<s:element minOccurs="0" maxOccurs="1" name="LugarOrigen"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPaisLugarOrigen" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="NumeroConocimiento" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPuertoTrasbordo" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPuertoDescarga" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaDescarga" type="s:dateTime" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPaisDestino" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="MarcaBultos"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="Consignatario" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="NotificarA"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorConsolidado" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorTransitoTrasbordo" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="TipoDocumentoDestinatarioMercaderia" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="IdentificadorDestinatarioMercaderia" type="s:long" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPaisEmisionPasaporteDestinatario" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="PosicionArancelaria" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorOperadorLogisticoSeguro" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorTransitoMonitoreado" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorRenar" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="RazonSocialFowarderExterior" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorTributarioForwarderExterior" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPaisEmisorIdentificadorForwarderExterior"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Comentario"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoLugarOperativoDescarga" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoAduanaDescarga" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Mercaderias"
+						type="tns:ArrayOfLineaMercaderia" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="Contenedores" type="tns:ArrayOfContenedor" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ArrayOfLineaMercaderia">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded"
+						name="LineaMercaderia" nillable="true" type="tns:LineaMercaderia" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="LineaMercaderia">
+				<s:sequence>
+					<s:element minOccurs="1" maxOccurs="1" name="NumeroLinea"
+						type="s:int" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoEmbalaje" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="TipoEmbalaje" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CondicionContenedor" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="CantidadManifestada" type="s:int" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="PesoVolumenManifestado" type="s:decimal" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="DescripcionMercaderia" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="NumeroBultos" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="TipoCarga"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Comentario"
+						type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="RegistrarTitulosCbcResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="RegistrarTitulosCbcResult"
+							type="tns:InfoAnticipadaMaritimaRta" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="RectificarTitulosCbc">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argWSAutenticacionEmpresa"
+							type="tns:WSAutenticacionEmpresa" />
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argRectificarTitulosCBC"
+							type="tns:RectificarTitulosCbcParams" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="RectificarTitulosCbcParams">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdTransaccion" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="InformacionTitulosDoc" type="tns:InformacionTitulosDoc" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="RectificarTitulosCbcResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="RectificarTitulosCbcResult"
+							type="tns:InfoAnticipadaMaritimaRta" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="EliminarTitulosCbc">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argWSAutenticacionEmpresa"
+							type="tns:WSAutenticacionEmpresa" />
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argEliminarTitulosCbc" type="tns:EliminarTitulosCbcParams" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="EliminarTitulosCbcParams">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdTransaccion" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="InformacionTitulosDoc" type="tns:EliminarTitulosCbcDoc" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="EliminarTitulosCbcDoc">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdentificadorViaje" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="PuertosConocimientos" type="tns:ArrayOfPuertoConocimiento" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdentificadoresContenedoresVaciosCorreo"
+						type="tns:ArrayOfIdentificadorContenedorVacioCorreo" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ArrayOfPuertoConocimiento">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded"
+						name="PuertoConocimiento" nillable="true"
+						type="tns:PuertoConocimiento" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="PuertoConocimiento">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPuertoEmbarque" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="NumeroConocimiento" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType
+				name="ArrayOfIdentificadorContenedorVacioCorreo">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded"
+						name="IdentificadorContenedorVacioCorreo" nillable="true"
+						type="tns:IdentificadorContenedorVacioCorreo" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType
+				name="IdentificadorContenedorVacioCorreo">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="Id"
+						type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="EliminarTitulosCbcResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="EliminarTitulosCbcResult"
+							type="tns:InfoAnticipadaMaritimaRta" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="RegistrarTitulosDesconsolidador">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argWSAutenticacionEmpresa"
+							type="tns:WSAutenticacionEmpresa" />
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argRegistrarTitulosDesconsolidador"
+							type="tns:RegistrarTitulosDesconsolidadorParams" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType
+				name="RegistrarTitulosDesconsolidadorParams">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdTransaccion" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="InformacionTitulosDesconsolidadorDoc"
+						type="tns:RegistrarTitulosDesconsolidadorDoc" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType
+				name="RegistrarTitulosDesconsolidadorDoc">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdentificadorViaje" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="TitulosDesconsolidador"
+						type="tns:ArrayOfTituloDesconsolidador" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ArrayOfTituloDesconsolidador">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded"
+						name="TituloDesconsolidador" nillable="true"
+						type="tns:TituloDesconsolidador" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="TituloDesconsolidador">
+				<s:complexContent mixed="false">
+					<s:extension base="tns:Titulo">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1"
+								name="IdentificadorTituloMadre" type="s:string" />
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:element name="RegistrarTitulosDesconsolidadorResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="RegistrarTitulosDesconsolidadorResult"
+							type="tns:InfoAnticipadaMaritimaRta" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="RectificarTitulosDesconsolidador">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argWSAutenticacionEmpresa"
+							type="tns:WSAutenticacionEmpresa" />
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argRectificarTitulosDesconsolidador"
+							type="tns:RectificarTitulosDesconsolidadorParams" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType
+				name="RectificarTitulosDesconsolidadorParams">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdTransaccion" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="InformacionTitulosDesconsolidadorDoc"
+						type="tns:RectificarTitulosDesconsolidadorDoc" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType
+				name="RectificarTitulosDesconsolidadorDoc">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdentificadorViaje" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="TitulosDesconsolidador"
+						type="tns:ArrayOfTituloDesconsolidador" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="RectificarTitulosDesconsolidadorResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="RectificarTitulosDesconsolidadorResult"
+							type="tns:InfoAnticipadaMaritimaRta" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="EliminarTitulosDesconsolidador">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argWSAutenticacionEmpresa"
+							type="tns:WSAutenticacionEmpresa" />
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argEliminarTitulosDesconsolidador"
+							type="tns:EliminarTitulosDesconsolidadorParams" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType
+				name="EliminarTitulosDesconsolidadorParams">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdTransaccion" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="InformacionTitulosDesconsolidadorDoc"
+						type="tns:EliminarTitulosDesconsolidadorDoc" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="EliminarTitulosDesconsolidadorDoc">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdentificadorViaje" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="PuertosConocimientos" type="tns:ArrayOfPuertoConocimiento" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="EliminarTitulosDesconsolidadorResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="EliminarTitulosDesconsolidadorResult"
+							type="tns:InfoAnticipadaMaritimaRta" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="CerrarViaje">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argWSAutenticacionEmpresa"
+							type="tns:WSAutenticacionEmpresa" />
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argCerrarViaje" type="tns:CerrarViajeParams" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="CerrarViajeParams">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdTransaccion" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="InformacionCierreDoc" type="tns:InformacionCierreDoc" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="InformacionCierreDoc">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdentificadorViaje" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="CerrarViajeResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="CerrarViajeResult" type="tns:InfoAnticipadaMaritimaRta" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="RegistrarPeboMGC">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argWSAutenticacionEmpresa"
+							type="tns:WSAutenticacionEmpresa" />
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argRegistrarPeboMGC" type="tns:RegistrarPeboMGCParams" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="RegistrarPeboMGCParams">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdTransaccion" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="InformacionTitulosPeboMGCDoc"
+						type="tns:InformacionTitulosPeboMGCDoc" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="InformacionTitulosPeboMGCDoc">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdentificadorViaje" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Titulos"
+						type="tns:ArrayOfTituloPeboMGC" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="ContenedoresVaciosCorreo"
+						type="tns:ArrayOfContenedorPeboMGC" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ArrayOfTituloPeboMGC">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded"
+						name="TituloPeboMGC" nillable="true" type="tns:TituloPeboMGC" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="TituloPeboMGC">
+				<s:sequence>
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaEmbarque" type="s:dateTime" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPuertoEmbarque" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaCargaLugarOrigen" type="s:dateTime" />
+					<s:element minOccurs="0" maxOccurs="1" name="LugarOrigen"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPaisLugarOrigen" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="NumeroConocimiento" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPuertoTrasbordo" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPuertoDescarga" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaDescarga" type="s:dateTime" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPaisDestino" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="MarcaBultos"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorConsolidado" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorTransitoTrasbordo" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="PosicionArancelaria" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorOperadorLogisticoSeguro" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorTransitoMonitoreado" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorRenar" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="RazonSocialFowarderExterior" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IndicadorTributarioForwarderExterior" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPaisEmisorIdentificadorForwarderExterior"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Comentario"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Mercaderias"
+						type="tns:ArrayOfLineaMercaderia" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="Contenedores" type="tns:ArrayOfContenedorPeboMGC" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ArrayOfContenedorPeboMGC">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded"
+						name="ContenedorPeboMGC" nillable="true"
+						type="tns:ContenedorPeboMGC" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ContenedorPeboMGC">
+				<s:sequence>
+					<s:element minOccurs="1" maxOccurs="1"
+						name="CuitAtaOperadorContenedor" type="s:long" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CaracteristicasContenedor" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdentificadorContenedor" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CondicionContenedor" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1" name="Tara"
+						type="s:long" />
+					<s:element minOccurs="1" maxOccurs="1" name="PesoBruto"
+						type="s:decimal" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="NumeroPrecintoOrigen" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaVencimientoContenedor" type="s:dateTime" />
+					<s:element minOccurs="0" maxOccurs="1" name="Acep"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPuertoEmbarque" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaEmbarque" type="s:dateTime" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaCargaLugarOrigen" type="s:dateTime" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoLugarOrigen" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPaisLugarOrigen" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="CodigoPuertoDescarga" type="s:string" />
+					<s:element minOccurs="1" maxOccurs="1"
+						name="FechaDescarga" type="s:dateTime" />
+					<s:element minOccurs="0" maxOccurs="1" name="Comentario"
+						type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="RegistrarPeboMGCResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="RegistrarPeboMGCResult"
+							type="tns:InfoAnticipadaMaritimaRta" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="EliminarPeboMGC">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argWSAutenticacionEmpresa"
+							type="tns:WSAutenticacionEmpresa" />
+						<s:element minOccurs="0" maxOccurs="1"
+							name="argEliminarPeboMGC" type="tns:EliminarPeboMGCParams" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="EliminarPeboMGCParams">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdTransaccion" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="InformacionPeboMGCDoc" type="tns:EliminarPeboMGCDoc" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="EliminarPeboMGCDoc">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdentificadorViaje" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="PuertosConocimientos" type="tns:ArrayOfPuertoConocimiento" />
+					<s:element minOccurs="0" maxOccurs="1"
+						name="IdentificadoresContenedoresVaciosCorreo"
+						type="tns:ArrayOfIdentificadorContenedorVacioCorreo" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="EliminarPeboMGCResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="EliminarPeboMGCResult" type="tns:InfoAnticipadaMaritimaRta" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="Dummy">
+				<s:complexType />
+			</s:element>
+			<s:element name="DummyResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="DummyResult" type="tns:ResultadoEjecucionDummy" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="ResultadoEjecucionDummy">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="AppServer"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="DbServer"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="AuthServer"
+						type="s:string" />
+				</s:sequence>
+			</s:complexType>
+		</s:schema>
+	</wsdl:types>
+	<wsdl:message name="RegistrarViajeSoapIn">
+		<wsdl:part name="parameters" element="tns:RegistrarViaje" />
+	</wsdl:message>
+	<wsdl:message name="RegistrarViajeSoapOut">
+		<wsdl:part name="parameters"
+			element="tns:RegistrarViajeResponse" />
+	</wsdl:message>
+	<wsdl:message name="RectificarViajeSoapIn">
+		<wsdl:part name="parameters" element="tns:RectificarViaje" />
+	</wsdl:message>
+	<wsdl:message name="RectificarViajeSoapOut">
+		<wsdl:part name="parameters"
+			element="tns:RectificarViajeResponse" />
+	</wsdl:message>
+	<wsdl:message name="RegistrarTitulosCbcSoapIn">
+		<wsdl:part name="parameters"
+			element="tns:RegistrarTitulosCbc" />
+	</wsdl:message>
+	<wsdl:message name="RegistrarTitulosCbcSoapOut">
+		<wsdl:part name="parameters"
+			element="tns:RegistrarTitulosCbcResponse" />
+	</wsdl:message>
+	<wsdl:message name="RectificarTitulosCbcSoapIn">
+		<wsdl:part name="parameters"
+			element="tns:RectificarTitulosCbc" />
+	</wsdl:message>
+	<wsdl:message name="RectificarTitulosCbcSoapOut">
+		<wsdl:part name="parameters"
+			element="tns:RectificarTitulosCbcResponse" />
+	</wsdl:message>
+	<wsdl:message name="EliminarTitulosCbcSoapIn">
+		<wsdl:part name="parameters"
+			element="tns:EliminarTitulosCbc" />
+	</wsdl:message>
+	<wsdl:message name="EliminarTitulosCbcSoapOut">
+		<wsdl:part name="parameters"
+			element="tns:EliminarTitulosCbcResponse" />
+	</wsdl:message>
+	<wsdl:message name="RegistrarTitulosDesconsolidadorSoapIn">
+		<wsdl:part name="parameters"
+			element="tns:RegistrarTitulosDesconsolidador" />
+	</wsdl:message>
+	<wsdl:message
+		name="RegistrarTitulosDesconsolidadorSoapOut">
+		<wsdl:part name="parameters"
+			element="tns:RegistrarTitulosDesconsolidadorResponse" />
+	</wsdl:message>
+	<wsdl:message
+		name="RectificarTitulosDesconsolidadorSoapIn">
+		<wsdl:part name="parameters"
+			element="tns:RectificarTitulosDesconsolidador" />
+	</wsdl:message>
+	<wsdl:message
+		name="RectificarTitulosDesconsolidadorSoapOut">
+		<wsdl:part name="parameters"
+			element="tns:RectificarTitulosDesconsolidadorResponse" />
+	</wsdl:message>
+	<wsdl:message name="EliminarTitulosDesconsolidadorSoapIn">
+		<wsdl:part name="parameters"
+			element="tns:EliminarTitulosDesconsolidador" />
+	</wsdl:message>
+	<wsdl:message name="EliminarTitulosDesconsolidadorSoapOut">
+		<wsdl:part name="parameters"
+			element="tns:EliminarTitulosDesconsolidadorResponse" />
+	</wsdl:message>
+	<wsdl:message name="CerrarViajeSoapIn">
+		<wsdl:part name="parameters" element="tns:CerrarViaje" />
+	</wsdl:message>
+	<wsdl:message name="CerrarViajeSoapOut">
+		<wsdl:part name="parameters"
+			element="tns:CerrarViajeResponse" />
+	</wsdl:message>
+	<wsdl:message name="RegistrarPeboMGCSoapIn">
+		<wsdl:part name="parameters" element="tns:RegistrarPeboMGC" />
+	</wsdl:message>
+	<wsdl:message name="RegistrarPeboMGCSoapOut">
+		<wsdl:part name="parameters"
+			element="tns:RegistrarPeboMGCResponse" />
+	</wsdl:message>
+	<wsdl:message name="EliminarPeboMGCSoapIn">
+		<wsdl:part name="parameters" element="tns:EliminarPeboMGC" />
+	</wsdl:message>
+	<wsdl:message name="EliminarPeboMGCSoapOut">
+		<wsdl:part name="parameters"
+			element="tns:EliminarPeboMGCResponse" />
+	</wsdl:message>
+	<wsdl:message name="DummySoapIn">
+		<wsdl:part name="parameters" element="tns:Dummy" />
+	</wsdl:message>
+	<wsdl:message name="DummySoapOut">
+		<wsdl:part name="parameters" element="tns:DummyResponse" />
+	</wsdl:message>
+	<wsdl:portType name="wgesinformacionanticipadaSoap">
+		<wsdl:operation name="RegistrarViaje">
+			<wsdl:documentation
+				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Registración de Viaje ATA MT</wsdl:documentation>
+			<wsdl:input message="tns:RegistrarViajeSoapIn" />
+			<wsdl:output message="tns:RegistrarViajeSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="RectificarViaje">
+			<wsdl:documentation
+				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Rectificación de Viaje ATA MT</wsdl:documentation>
+			<wsdl:input message="tns:RectificarViajeSoapIn" />
+			<wsdl:output message="tns:RectificarViajeSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="RegistrarTitulosCbc">
+			<wsdl:documentation
+				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Registrar Titulos CBC</wsdl:documentation>
+			<wsdl:input message="tns:RegistrarTitulosCbcSoapIn" />
+			<wsdl:output message="tns:RegistrarTitulosCbcSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="RectificarTitulosCbc">
+			<wsdl:documentation
+				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Rectificar Titulos CBC</wsdl:documentation>
+			<wsdl:input message="tns:RectificarTitulosCbcSoapIn" />
+			<wsdl:output message="tns:RectificarTitulosCbcSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="EliminarTitulosCbc">
+			<wsdl:documentation
+				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Eliminar Titulos CBC</wsdl:documentation>
+			<wsdl:input message="tns:EliminarTitulosCbcSoapIn" />
+			<wsdl:output message="tns:EliminarTitulosCbcSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="RegistrarTitulosDesconsolidador">
+			<wsdl:documentation
+				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Registrar Titulos Desconsolidador</wsdl:documentation>
+			<wsdl:input
+				message="tns:RegistrarTitulosDesconsolidadorSoapIn" />
+			<wsdl:output
+				message="tns:RegistrarTitulosDesconsolidadorSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="RectificarTitulosDesconsolidador">
+			<wsdl:documentation
+				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Rectificar Titulos Desconsolidador</wsdl:documentation>
+			<wsdl:input
+				message="tns:RectificarTitulosDesconsolidadorSoapIn" />
+			<wsdl:output
+				message="tns:RectificarTitulosDesconsolidadorSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="EliminarTitulosDesconsolidador">
+			<wsdl:documentation
+				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Eliminar Titulos Desconsolidador</wsdl:documentation>
+			<wsdl:input
+				message="tns:EliminarTitulosDesconsolidadorSoapIn" />
+			<wsdl:output
+				message="tns:EliminarTitulosDesconsolidadorSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="CerrarViaje">
+			<wsdl:documentation
+				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Registrar Cierre Informacion Anticipada Maritima</wsdl:documentation>
+			<wsdl:input message="tns:CerrarViajeSoapIn" />
+			<wsdl:output message="tns:CerrarViajeSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="RegistrarPeboMGC">
+			<wsdl:documentation
+				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Registrar Permanencia a Bordo Manifiesto General de Carga
+				Informacion Anticipada Maritima</wsdl:documentation>
+			<wsdl:input message="tns:RegistrarPeboMGCSoapIn" />
+			<wsdl:output message="tns:RegistrarPeboMGCSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="EliminarPeboMGC">
+			<wsdl:documentation
+				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Eliminar Permanencia a Bordo del Manifiesto General de
+				Carga Informacion Anticipada Maritima</wsdl:documentation>
+			<wsdl:input message="tns:EliminarPeboMGCSoapIn" />
+			<wsdl:output message="tns:EliminarPeboMGCSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="Dummy">
+			<wsdl:input message="tns:DummySoapIn" />
+			<wsdl:output message="tns:DummySoapOut" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="wgesinformacionanticipadaSoap"
+		type="tns:wgesinformacionanticipadaSoap">
+		<soap:binding
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="RegistrarViaje">
+			<soap:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/RegistrarViaje"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RectificarViaje">
+			<soap:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/RectificarViaje"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RegistrarTitulosCbc">
+			<soap:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/RegistrarTitulosCbc"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RectificarTitulosCbc">
+			<soap:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/RectificarTitulosCbc"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="EliminarTitulosCbc">
+			<soap:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/EliminarTitulosCbc"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RegistrarTitulosDesconsolidador">
+			<soap:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/RegistrarTitulosDesconsolidador"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RectificarTitulosDesconsolidador">
+			<soap:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/RectificarTitulosDesconsolidador"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="EliminarTitulosDesconsolidador">
+			<soap:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/EliminarTitulosDesconsolidador"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CerrarViaje">
+			<soap:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/CerrarViaje"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RegistrarPeboMGC">
+			<soap:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/RegistrarPeboMGC"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="EliminarPeboMGC">
+			<soap:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/EliminarPeboMGC"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Dummy">
+			<soap:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/Dummy"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="wgesinformacionanticipadaSoap12"
+		type="tns:wgesinformacionanticipadaSoap">
+		<soap12:binding
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="RegistrarViaje">
+			<soap12:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/RegistrarViaje"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RectificarViaje">
+			<soap12:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/RectificarViaje"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RegistrarTitulosCbc">
+			<soap12:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/RegistrarTitulosCbc"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RectificarTitulosCbc">
+			<soap12:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/RectificarTitulosCbc"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="EliminarTitulosCbc">
+			<soap12:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/EliminarTitulosCbc"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RegistrarTitulosDesconsolidador">
+			<soap12:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/RegistrarTitulosDesconsolidador"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RectificarTitulosDesconsolidador">
+			<soap12:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/RectificarTitulosDesconsolidador"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="EliminarTitulosDesconsolidador">
+			<soap12:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/EliminarTitulosDesconsolidador"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CerrarViaje">
+			<soap12:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/CerrarViaje"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RegistrarPeboMGC">
+			<soap12:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/RegistrarPeboMGC"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="EliminarPeboMGC">
+			<soap12:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/EliminarPeboMGC"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Dummy">
+			<soap12:operation
+				soapAction="Ar.Gob.Afip.Dga.Org.wgesinformacionanticipada/Dummy"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="wgesinformacionanticipada">
+		<wsdl:documentation
+			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Recepción de la información anticipada marítima</wsdl:documentation>
+		<wsdl:port name="wgesinformacionanticipadaSoap"
+			binding="tns:wgesinformacionanticipadaSoap">
+			<soap:address
+				location="https://wsaduhomoext.afip.gob.ar/DIAV2/wgesinformacionanticipada/wgesinformacionanticipada.asmx" />
+		</wsdl:port>
+		<wsdl:port name="wgesinformacionanticipadaSoap12"
+			binding="tns:wgesinformacionanticipadaSoap12">
+			<soap12:address
+				location="https://wsaduhomoext.afip.gob.ar/DIAV2/wgesinformacionanticipada/wgesinformacionanticipada.asmx" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
