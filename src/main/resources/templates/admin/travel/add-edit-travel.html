@@ -3,17 +3,17 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorate="layout">
 <head>
-    <title>Product Details</title>
+    <title>Detalle de viaje.</title>
 </head>
 <body>
 <section layout:fragment="header">
     <h1>
-        Product Detail
-        <small>Control panel</small>
+        Viaje
+        <small>Panel de control</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Product Details</li>
+        <li class="active">Viajes</li>
     </ol>
 </section>
 <div layout:fragment="content">
@@ -22,25 +22,25 @@
             <!-- Horizontal Form -->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Product Detail</h3>
+                    <h3 class="box-title">Informacion de viajes</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form th:action="@{/product/save}" th:object="${product}" method="post" class="form-horizontal">
+                <form th:action="@{/travel/save}" th:object="${travel}" method="post" class="form-horizontal">
                     <div class="box-body">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Product Id</label>
+                            <label class="col-sm-2 control-label">Codigo de viaje</label>
 
                             <div class="col-sm-10">
-                                <input type="text" class="form-control"  readonly="readonly" th:field="*{id}" placeholder="Product ID">
+                                <input type="text" class="form-control"  readonly="readonly" th:field="*{travelCode}" placeholder="Codigo de viaje">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Product Type:<span>*</span></label>
+                            <label class="col-sm-2 control-label">Medio de transporte:<span>*</span></label>
                             <div class="col-sm-10">
-                                <select class="form-control" th:field="*{productTypeId}">
+                                <select class="form-control" th:field="*{transportTypeId}">
                                     <option value="">Select...</option>
-                                    <option th:each="productType : ${productTypes}" th:value="${productType.id}" th:utext="${productType.name}"/>
+                                    <option th:each="transportType : ${transportTypes}" th:value="${transportType.id}" th:utext="${transportType.name}"/>
                                 </select>
                                 <p class="text-red" th:if="${#fields.hasErrors('productTypeId')}" th:errors="*{productTypeId}"></p>
                             </div>

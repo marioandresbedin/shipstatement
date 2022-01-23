@@ -1,10 +1,10 @@
 package com.insurwire.shipstatement.service;
 
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.InitializingBean;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,10 +17,6 @@ import com.insurwire.shipstatement.model.User;
 import com.insurwire.shipstatement.repository.IRoleRepository;
 import com.insurwire.shipstatement.repository.IUserRepository;
 import com.insurwire.shipstatement.web.dto.UserRegistrationDto;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements IUserService {

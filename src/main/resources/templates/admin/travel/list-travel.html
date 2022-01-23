@@ -22,12 +22,12 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Lista de viajes</h3>
+                    <h3 class="box-title">Viajes cargados</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="box-footer center">
-                        <a th:href="@{/product/add}">
+                        <a th:href="@{/travel/add}">
                             <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Agregar nuevo</button>
                         </a>
                         <!--<form th:action="@{/product/list}" method="get">
@@ -71,9 +71,9 @@
                                     </thead>
                                     <tbody>
                                     <tr th:each="travels : ${listTravels}">
-                                        <td th:text="${product.id}">Product ID</td>
-                                        <td th:each="productType : ${productTypes}"
-                                            th:if="(${productType.id} == ${product.productTypeId})"
+                                        <td th:text="${travel.id}">Product ID</td>
+                                        <td th:each="transportType : ${transportTypes}"
+                                            th:if="(${transportType.id} == ${travel.productTypeId})"
                                             th:text="${productType.name}">Product Type
                                         </td>
                                         <td th:text="${product.name}">Name</td>
