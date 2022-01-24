@@ -26,7 +26,7 @@ public class TransportTypeController {
 
 	private String add_edit_template = "admin/transporttype/add-edit-transporttype";
 	private String list_template = "admin/transporttype/list-transporttype";
-	private String list_redirect = "redirect:transporttype/list";
+	private String list_redirect = "redirect:/transporttype/list";
 
 	@GetMapping("/add")
 	public String addTransportType(TransportType transportType, Model model) {

@@ -26,7 +26,7 @@ public class CountryController {
 
 	private String add_edit_template = "admin/country/add-edit-country";
 	private String list_template = "admin/country/list-country";
-	private String list_redirect = "redirect:country/list";
+	private String list_redirect = "redirect:/country/list";
 
 	@GetMapping("/add")
 	public String addProductType(Country country, Model model) {
