@@ -32,7 +32,31 @@
                             <label class="col-sm-2 control-label">Codigo de viaje</label>
 
                             <div class="col-sm-10">
-                                <input type="text" class="form-control"  readonly="readonly" th:field="*{travelCode}" placeholder="Codigo de viaje">
+                                <input type="text" class="form-control"  readonly="readonly" th:field="*{id}" placeholder="Codigo de viaje">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Fecha de arribo</label>
+
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" th:field="*{travelArrivalDate}" placeholder="Fecha de arribo">
+                                <p class="text-red" th:if="${#fields.hasErrors('travelArrivalDate')}" th:errors="*{travelArrivalDate}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Fecha de inicio</label>
+
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" th:field="*{travelStartDate}" placeholder="Fecha de inicio viaje">
+                                <p class="text-red" th:if="${#fields.hasErrors('travelStartDate')}" th:errors="*{travelStartDate}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Fecha de fin</label>
+
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" th:field="*{travelEndDate}" placeholder="Fecha de fin viaje">
+                                <p class="text-red" th:if="${#fields.hasErrors('travelEndDate')}" th:errors="*{travelEndDate}"></p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -42,47 +66,112 @@
                                     <option value="">Select...</option>
                                     <option th:each="transportType : ${transportTypes}" th:value="${transportType.id}" th:utext="${transportType.name}"/>
                                 </select>
-                                <p class="text-red" th:if="${#fields.hasErrors('productTypeId')}" th:errors="*{productTypeId}"></p>
+                                <p class="text-red" th:if="${#fields.hasErrors('transportTypeId')}" th:errors="*{transportTypeId}"></p>
+                            </div>
+                        </div>
+                        
+                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Pais de procedencia:<span>*</span></label>
+                            <div class="col-sm-10">
+                                <select class="form-control" th:field="*{countryId}">
+                                    <option value="">Select...</option>
+                                    <option th:each="country : ${countries}" th:value="${country.id}" th:utext="${country.name}"/>
+                                </select>
+                                <p class="text-red" th:if="${#fields.hasErrors('countryId')}" th:errors="*{countryId}"></p>
+                            </div>
+                        </div>
+                        
+                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Puerto:<span>*</span></label>
+                            <div class="col-sm-10">
+                                <select class="form-control" th:field="*{portId}">
+                                    <option value="">Select...</option>
+                                    <option th:each="port : ${ports}" th:value="${port.id}" th:utext="${port.name}"/>
+                                </select>
+                                <p class="text-red" th:if="${#fields.hasErrors('portId')}" th:errors="*{portId}"></p>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Name</label>
+                            <label class="col-sm-2 control-label">Transporte Vacio?</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control"  th:field="*{name}" />
-                                <p class="text-red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                                <select class="form-control" th:field="*{emptyTransport}">
+                                    <option value="">Select...</option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                                <p class="text-red" th:if="${#fields.hasErrors('emptyTransport')}" th:errors="*{emptyTransport}"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Mercaderia a bordo?</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" th:field="*{loadOnBoard}">
+                                    <option value="">Select...</option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                                <p class="text-red" th:if="${#fields.hasErrors('loadOnBoard')}" th:errors="*{loadOnBoard}"></p>
+                            </div>
+                        </div>
+                        
+                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Pais de transportista:<span>*</span></label>
+                            <div class="col-sm-10">
+                                <select class="form-control" th:field="*{transportCountryId}">
+                                    <option value="">Select...</option>
+                                    <option th:each="country : ${countries}" th:value="${country.id}" th:utext="${country.name}"/>
+                                </select>
+                                <p class="text-red" th:if="${#fields.hasErrors('transportCountryId')}" th:errors="*{transportCountryId}"></p>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Brand</label>
+                            <label class="col-sm-2 control-label">Transportista designado:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" th:field="*{brand}" />
+                                <input type="text" class="form-control" th:field="*{assignedPerson}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('assignedPerson')}" th:errors="*{assignedPerson}"></p>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Made in</label>
+                        
+                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Pais de Medio de Transporte:<span>*</span></label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" th:field="*{madein}" />
+                                <select class="form-control" th:field="*{transportTypeCountryId}">
+                                    <option value="">Select...</option>
+                                    <option th:each="country : ${countries}" th:value="${country.id}" th:utext="${country.name}"/>
+                                </select>
+                                <p class="text-red" th:if="${#fields.hasErrors('transportTypeCountryId')}" th:errors="*{transportTypeCountryId}"></p>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Price</label>
+                        
+                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Aduana:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" th:field="*{price}" />
-                                <p class="text-red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
+                                <input type="text" class="form-control" th:field="*{customs}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('customs')}" th:errors="*{customs}"></p>
+                            </div>
+                        </div>
+                        
+                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Pais emisor documento capitan:<span>*</span></label>
+                            <div class="col-sm-10">
+                                <select class="form-control" th:field="*{captainCountryId}">
+                                    <option value="">Select...</option>
+                                    <option th:each="country : ${countries}" th:value="${country.id}" th:utext="${country.name}"/>
+                                </select>
+                                <p class="text-red" th:if="${#fields.hasErrors('captainCountryId')}" th:errors="*{captainCountryId}"></p>
                             </div>
                         </div>
 
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer center">
-                        <a th:href="@{/product/list}">
-                            <button type="button" class="btn btn-default"><i class="fa fa-right"></i> Cancel</button>
+                        <a th:href="@{/travel/list}">
+                            <button type="button" class="btn btn-default"><i class="fa fa-right"></i> Cancelar</button>
                         </a>
-                        <button type="submit" class="btn btn-info pull-right"><i class="fa fa-save"></i> Save</button>
+                        <button type="submit" class="btn btn-info pull-right"><i class="fa fa-save"></i> Guardar</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>

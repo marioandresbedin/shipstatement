@@ -70,19 +70,28 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="travels : ${listTravels}">
-                                        <td th:text="${travel.id}">Product ID</td>
+                                    <tr th:each="travel : ${listTravels}">
+                                        <td th:text="${travel.id}">Codigo de viaje</td>
                                         <td th:each="transportType : ${transportTypes}"
-                                            th:if="(${transportType.id} == ${travel.productTypeId})"
-                                            th:text="${productType.name}">Product Type
+                                            th:if="(${transportType.id} == ${travel.transportTypeId})"
+                                            th:text="${transportType.name}">Medio de transporte
                                         </td>
-                                        <td th:text="${product.name}">Name</td>
-                                        <td th:text="${product.brand}">Brand</td>
-                                        <td th:text="${product.madein}">Made in</td>
-                                        <td th:text="${product.price}">Price</td>
+                                        <td th:each="country : ${countries}"
+                                            th:if="(${country.id} == ${travel.countryId})"
+                                            th:text="${country.name}">Pais de procedencia
+                                        </td>
+                                       	<td th:each="port : ${ports}"
+                                            th:if="(${port.id} == ${travel.portId})"
+                                            th:text="${port.name}">Puerto
+                                        </td>
+                                        <td th:text="${travel.travelStartDate}">Fecha inicio viaje</td>
+                                        <td th:text="${travel.travelEndDate}">Fecha fin viaje</td>
+                                        <td th:text="${travel.travelArrivalDate}">Fecha Arribo</td>
+                                        <td th:text="${travel.status}">Made in</td>
+                                        
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-xs purple editView" title="Edit" th:href="@{'/product/edit/' + ${product.id}}"><i class="fa fa-edit"></i> Edit</a>
-                                            <a href="#" class="btn btn-danger btn-xs purple deleteView" title="Delete" th:href="@{'/product/delete/' + ${product.id}}"><i class="fa fa-trash-o"></i> Delete</a>
+                                            <a href="#" class="btn btn-primary btn-xs purple editView" title="Edit" th:href="@{'/travel/edit/' + ${travel.id}}"><i class="fa fa-edit"></i> Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs purple deleteView" title="Delete" th:href="@{'/travel/delete/' + ${travel.id}}"><i class="fa fa-trash-o"></i> Delete</a>
                                         </td>
                                     </tr>
                                     </tbody>

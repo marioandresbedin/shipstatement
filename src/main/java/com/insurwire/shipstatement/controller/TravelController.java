@@ -45,6 +45,8 @@ public class TravelController {
 
 	@GetMapping("/add")
 	public String addTravel(Travel travel, Model model) {
+		
+		travel.setTravelCode("TRAVEL-1");
 		model.addAttribute("travel", travel);
 
 		// TODO add Lists required to add a travel: countries, ports, transpor types
@@ -67,8 +69,14 @@ public class TravelController {
 		Travel travel = travelService.get(id);
 		model.addAttribute("travel", travel);
 
-		// List<ProductType> productTypes = productTypeService.listAll();
-		// model.addAttribute("productTypes", productTypes);
+		List<TransportType> transportTypes = transportTypeService.listAll();
+		model.addAttribute("transportTypes", transportTypes);
+		
+		List<Country> countries = countryService.listAll();
+		model.addAttribute("countries", countries);
+		
+		List<Port> ports = portervice.listAll();
+		model.addAttribute("ports", ports);
 
 		return add_edit_template;
 	}
@@ -77,13 +85,11 @@ public class TravelController {
 	public String saveTravel(@Valid @ModelAttribute("travel") Travel travel, BindingResult result, Model model) {
 		model.addAttribute("travel", travel);
 
-		// List<ProductType> productTypes = productTypeService.listAll();
-		// model.addAttribute("productTypes", productTypes);
-
 		if (result.hasErrors()) {
 			return add_edit_template;
 		}
-
+		
+		travel.setStatus("presentado");
 		travelService.save(travel);
 		return list_redirect + "?success";
 	}
@@ -100,6 +106,15 @@ public class TravelController {
 
 		List<Travel> listTravels = travelService.listAll();
 		model.addAttribute("listTravels", listTravels);
+		
+		List<TransportType> transportTypes = transportTypeService.listAll();
+		model.addAttribute("transportTypes", transportTypes);
+		
+		List<Country> countries = countryService.listAll();
+		model.addAttribute("countries", countries);
+		
+		List<Port> ports = portervice.listAll();
+		model.addAttribute("ports", ports);
 
 		return list_template;
 	}
