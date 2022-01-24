@@ -87,7 +87,7 @@
                                         <td th:text="${travel.travelStartDate}">Fecha inicio viaje</td>
                                         <td th:text="${travel.travelEndDate}">Fecha fin viaje</td>
                                         <td th:text="${travel.travelArrivalDate}">Fecha Arribo</td>
-                                        <td th:text="${travel.status}">Made in</td>
+                                        <td th:text="${travel.status}" class="alert-success">Made in</td>
                                         
                                         <td>
                                             <a href="#" class="btn btn-primary btn-xs purple editView" title="Edit" th:href="@{'/travel/edit/' + ${travel.id}}"><i class="fa fa-edit"></i> Edit</a>
