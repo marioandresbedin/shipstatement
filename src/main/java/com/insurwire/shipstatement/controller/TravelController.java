@@ -39,9 +39,9 @@ public class TravelController {
 	@Autowired
 	private CountryService countryService;
 
-	private String add_edit_template = "/admin/travel/add-edit-travel";
-	private String list_template = "/admin/travel/list-travel";
-	private String list_redirect = "redirect:/travel/list";
+	private String add_edit_template = "admin/travel/add-edit-travel";
+	private String list_template = "admin/travel/list-travel";
+	private String list_redirect = "redirect:travel/list";
 
 	@GetMapping("/add")
 	public String addTravel(Travel travel, Model model) {

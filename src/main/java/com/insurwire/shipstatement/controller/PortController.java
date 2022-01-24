@@ -24,9 +24,9 @@ public class PortController {
 	@Autowired
 	private PortService portService;
 
-	private String add_edit_template = "/admin/port/add-edit-port";
-	private String list_template = "/admin/port/list-port";
-	private String list_redirect = "redirect:/port/list";
+	private String add_edit_template = "admin/port/add-edit-port";
+	private String list_template = "admin/port/list-port";
+	private String list_redirect = "redirect:port/list";
 
 	@GetMapping("/add")
 	public String addPort(Port port, Model model) {
