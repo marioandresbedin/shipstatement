@@ -14,7 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.insurwire.shipstatement.model.Country;
+import com.insurwire.shipstatement.model.Port;
+import com.insurwire.shipstatement.model.TransportType;
 import com.insurwire.shipstatement.model.Travel;
+import com.insurwire.shipstatement.service.CountryService;
+import com.insurwire.shipstatement.service.PortService;
+import com.insurwire.shipstatement.service.TransportTypeService;
 import com.insurwire.shipstatement.service.TravelService;
 
 @Controller
@@ -23,6 +29,15 @@ public class TravelController {
 
 	@Autowired
 	private TravelService travelService;
+	
+	@Autowired
+	private TransportTypeService transportTypeService;
+	
+	@Autowired
+	private PortService portervice;
+	
+	@Autowired
+	private CountryService countryService;
 
 	private String add_edit_template = "/admin/travel/add-edit-travel";
 	private String list_template = "/admin/travel/list-travel";
@@ -34,8 +49,15 @@ public class TravelController {
 
 		// TODO add Lists required to add a travel: countries, ports, transpor types
 
-		// List<ProductType> productTypes = productTypeService.listAll();
-		// model.addAttribute("productTypes", productTypes);
+		List<TransportType> transportTypes = transportTypeService.listAll();
+		model.addAttribute("transportTypes", transportTypes);
+		
+		List<Country> countries = countryService.listAll();
+		model.addAttribute("countries", countries);
+		
+		List<Port> ports = portervice.listAll();
+		model.addAttribute("ports", ports);
+		
 
 		return add_edit_template;
 	}

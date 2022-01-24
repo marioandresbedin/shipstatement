@@ -41,18 +41,40 @@ public class Travel {
 		this.travelCode = travelCode;
 	}
 
-	
-    @Column(name = "country_id")
-    @NotNull(message = "Select country!")
-    private Integer countryId;
+	@Column(name = "country_id")
+	@NotNull(message = "Select country!")
+	private Integer countryId;
 
-    @Column(name = "transporttype_id")
-    @NotNull(message = "Select Transport Type!")
-    private Integer transportTypeId;
-    
-    @Column(name = "port_id")
-    @NotNull(message = "Select Port!")
-    private Integer portId;
-	
+	public Integer getCountryId() {
+		return countryId;
+	}
+
+	public void setCountryId(Integer countryId) {
+		this.countryId = countryId;
+	}
+
+	@Column(name = "transporttype_id")
+	@NotNull(message = "Select Transport Type!")
+	private Integer transportTypeId;
+
+	public Integer getTransportTypeId() {
+		return transportTypeId;
+	}
+
+	public void setTransportTypeId(Integer transportTypeId) {
+		this.transportTypeId = transportTypeId;
+	}
+
+	@Column(name = "port_id")
+	@NotNull(message = "Select Port!")
+	private Integer portId;
+
+	public Integer getPortId() {
+		return portId;
+	}
+
+	public void setPortId(Integer portId) {
+		this.portId = portId;
+	}
 
 }
